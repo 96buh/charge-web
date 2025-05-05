@@ -1,0 +1,51 @@
+{
+  "HomePage": {
+    "title": "你好世界!!!",
+    "about": "前往關於頁面!"
+  },
+  "Sidebar": {
+    "home": "主頁面",
+    "settings": "設定",
+    "live": "即時資訊",
+    "stats": "統計資訊",
+    "alerts": "異常紀錄"
+  },
+  "SettingsPage": {
+    "appearanceTitle": "外觀",
+    "appearanceDesc": "設定主題顏色",
+    "lightThemeBtn": "淺色",
+    "darkThemeBtn": "深色",
+    "systemThemeBtn": "自動",
+
+    "langTitle": "語言",
+    "langDesc": "改變使用者介面的語言"
+  },
+
+  "Btns": {
+    "loginBtn": "登入",
+    "signupBtn": "註冊",
+    "continueBtn": "繼續"
+  },
+
+  "Auth": {
+    "email": "電子郵件地址",
+    "password": "密碼",
+    "confirmPass": "確認密碼",
+
+    "signupTitle": "建立帳號",
+
+    "dontHaveAcc": "還沒有帳號?",
+    "alreadyHaveAcc": "已經有帳號了?"
+  },
+  "StatsPage": {
+    "statusTitle": "狀態",
+    "statusValue": {
+      "charging": "充電中",
+      "full": "滿電",
+      "not_charging": "未充電"
+    },
+    "battery": "電量",
+    "temperature": "溫度",
+    "chargingTime": "充電時間"
+  }
+}

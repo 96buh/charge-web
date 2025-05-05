@@ -1,0 +1,51 @@
+{
+  "HomePage": {
+    "title": "Hello world!!!",
+    "about": "Go to the about page"
+  },
+  "Sidebar": {
+    "home": "Home",
+    "settings": "Settings",
+    "live": "Live Data",
+    "stats": "Statistics",
+    "alerts": "Alerts"
+  },
+  "SettingsPage": {
+    "appearanceTitle": "Appearance",
+    "appearanceDesc": "Set theme.",
+    "lightThemeBtn": "Light",
+    "darkThemeBtn": "Dark",
+    "systemThemeBtn": "System",
+
+    "langTitle": "Language",
+    "langDesc": "Change the language used in the user interface."
+  },
+
+  "Btns": {
+    "loginBtn": "Log in",
+    "signupBtn": "Sign up",
+    "continueBtn": "Continue"
+  },
+
+  "Auth": {
+    "email": "Email",
+    "password": "Password",
+    "confirmPass": "Confirm Password",
+
+    "signupTitle": "Create an account",
+
+    "dontHaveAcc": "Don't have an account?",
+    "alreadyHaveAcc": "Already have an account?"
+  },
+  "StatsPage": {
+    "statusTitle": "State",
+    "statusValue": {
+      "charging": "charging",
+      "full": "Fully Charged",
+      "not_charging": "Not Charging"
+    },
+    "battery": "Battery percentage",
+    "temperature": "Temperature",
+    "chargingTime": "Charging time"
+  }
+}
