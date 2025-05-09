@@ -46,6 +46,9 @@
     },
     "battery": "Battery percentage",
     "temperature": "Temperature",
-    "chargingTime": "Charging time"
+    "chargingTime": "Charging time",
+    "voltage": "Voltage",
+    "current": "Current",
+    "power": "Power"
   }
 }
