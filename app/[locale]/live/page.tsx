@@ -2,6 +2,7 @@ import { MyBarChart } from "@/components/myBarChart";
 import { MyLineChart } from "@/components/myLineChart";
 import StatCard from "@/components/statCard";
 import { useTranslations } from "next-intl";
+import { Clock7, Thermometer } from "lucide-react";
 
 export default function Page() {
   const t = useTranslations();
@@ -18,15 +19,21 @@ export default function Page() {
           value={t(`StatsPage.statusValue.${status}`)}
         />
         <StatCard title={t("StatsPage.battery")} value={battery} />
-        <StatCard title={t("StatsPage.chargingTime")} value={chargingTime} />
-        <StatCard title={t("StatsPage.temperature")} value={temperature} />
+        <StatCard
+          title={t("StatsPage.chargingTime")}
+          value={chargingTime}
+          icon={Clock7}
+        />
+        <StatCard
+          title={t("StatsPage.temperature")}
+          value={temperature}
+          icon={Thermometer}
+        />
       </div>
       <div className="grid gap-3 lg:grid-cols-3">
         <MyLineChart />
-      </div>
-      <div className="grid grid-cols-2 gap-3 ">
-        <MyBarChart />
-        <StatCard title={t("StatsPage.temperature")} value={"還沒決定"} />
+        <MyLineChart />
+        <MyLineChart />
       </div>
     </div>
   );

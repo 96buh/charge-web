@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { LucideIcon } from "lucide-react";
 
 export const signupSchema = z
   .object({
@@ -25,6 +26,7 @@ export type LoginSchema = z.infer<typeof loginSchema>;
 export type StatCardProps = {
   title: string;
   value: string;
+  icon?: LucideIcon;
 };
 
 export type BarChartProps = {

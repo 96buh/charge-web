@@ -42,7 +42,7 @@ export function AppSidebar({ user }: { user: User | null }) {
   const items = [
     { title: t("home"), url: "/", icon: Home },
     { title: t("settings"), url: "settings", icon: Settings },
-    { title: t("live"), url: "#", icon: RefreshCcw },
+    { title: t("live"), url: "live", icon: RefreshCcw },
     { title: t("stats"), url: "stats", icon: ChartColumnBig },
     { title: t("alerts"), url: "#", icon: TriangleAlert },
   ];

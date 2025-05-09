@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card";
 import { type StatCardProps } from "@/lib/types";
 
-export default function StatCard({ title, value }: StatCardProps) {
+export default function StatCard({ title, value, icon: Icon }: StatCardProps) {
   return (
     <Card
     // style={{
@@ -17,8 +17,9 @@ export default function StatCard({ title, value }: StatCardProps) {
     //   borderColor: "",
     // }}
     >
-      <CardHeader>
+      <CardHeader className="flex justify-between">
         <CardTitle>{title}</CardTitle>
+        {Icon && <Icon className="w-6 h-6" />}
         {/*<CardDescription>Card Description</CardDescription>*/}
       </CardHeader>
       <CardContent>

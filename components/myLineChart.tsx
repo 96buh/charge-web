@@ -32,7 +32,7 @@ const chartConfig = {
 export function MyLineChart() {
   const chartData = generateLiveData();
   return (
-    <Card className="col-span-2">
+    <Card>
       <CardHeader>
         <CardTitle>電壓</CardTitle>
         <CardDescription>最近30秒電壓變化</CardDescription>
@@ -43,7 +43,8 @@ export function MyLineChart() {
             accessibilityLayer
             data={chartData}
             margin={{
-              left: 12,
+              // left: 12,
+              left: -22,
               right: 12,
             }}
           >
