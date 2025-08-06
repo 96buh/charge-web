@@ -19,8 +19,6 @@ import {
   ChartLegendContent,
 } from "@/components/ui/chart";
 
-// import { generateLiveData } from "@/hooks/generateLiveData";
-
 type Props = {
   series: Point[];
   yKey: "voltage" | "current" | "power";
@@ -45,7 +43,6 @@ export function MyLineChart({ series, yKey, label }: Props) {
             accessibilityLayer
             data={chartData}
             margin={{
-              // left: 12,
               left: -22,
               right: 12,
             }}

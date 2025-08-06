@@ -21,7 +21,7 @@ export default function Page() {
     if (!sample) return;
 
     setSeries((prev) => {
-      if (prev.length && prev.at(-1)!.ts === sample.ts) return prev; // ← 去重
+      if (prev.length && prev.at(-1)!.ts === sample.ts) return prev;
       const next = [
         ...prev,
         {
@@ -36,7 +36,7 @@ export default function Page() {
     });
   }, [sample]);
   useEffect(() => {
-    if (!online) setSeries([]); // 失聯就把資料點清空
+    if (!online) setSeries([]);
   }, [online]);
 
   return (

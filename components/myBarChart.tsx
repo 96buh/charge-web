@@ -1,8 +1,6 @@
 "use client";
 
-import { TrendingUp } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, LabelList, XAxis } from "recharts";
-
 import {
   Card,
   CardContent,
@@ -17,15 +15,16 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-const chartData = [
-  { day: "Mon", value: 186 },
-  { day: "Tue", value: 305 },
-  { day: "Wen", value: 237 },
-  { day: "Thu", value: 73 },
-  { day: "Fri", value: 209 },
-  { day: "Sat", value: 214 },
-  { day: "Sun", value: 14 },
-];
+import { anomalyStore } from "@/lib/anomalyStore";
+// const chartData = [
+//   { day: "Mon", value: 186 },
+//   { day: "Tue", value: 305 },
+//   { day: "Wen", value: 237 },
+//   { day: "Thu", value: 73 },
+//   { day: "Fri", value: 209 },
+//   { day: "Sat", value: 214 },
+//   { day: "Sun", value: 14 },
+// ];
 
 const chartConfig = {
   value: {
@@ -33,20 +32,20 @@ const chartConfig = {
     color: "cyan",
   },
 } satisfies ChartConfig;
-import { ChartDataItem } from "@/lib/types";
 
-export function MyBarChart() {
+export function MyBarChart({ days = 7 }: { days?: number }) {
+  const data = anomalyStore.dailyCounts(days);
   return (
     <Card>
       <CardHeader>
-        <CardTitle>充電總量</CardTitle>
+        <CardTitle>HELLO</CardTitle>
         {/*<CardDescription>January - June 2024</CardDescription>*/}
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
           <BarChart
             accessibilityLayer
-            data={chartData}
+            data={data}
             margin={{
               top: 20,
             }}
@@ -63,7 +62,12 @@ export function MyBarChart() {
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
-            <Bar dataKey="value" fill="var(--color-value)" radius={8}>
+            <Bar
+              dataKey="count"
+              fill="var(--color-value)"
+              radius={8}
+              name={"次數"}
+            >
               <LabelList
                 position="top"
                 offset={12}
