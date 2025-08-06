@@ -29,12 +29,9 @@ export type StatCardProps = {
   icon?: LucideIcon;
 };
 
-export type BarChartProps = {
-  title: string;
-  description: string;
-};
-
-export type ChartDataItem = {
-  month: string;
-  value: number;
+export type Point = {
+  ts: number;
+  voltage: number;
+  current: number;
+  power: number;
 };

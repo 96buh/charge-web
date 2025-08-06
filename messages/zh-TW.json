@@ -46,6 +46,9 @@
     },
     "battery": "電量",
     "temperature": "溫度",
-    "chargingTime": "充電時間"
+    "chargingTime": "充電時間",
+    "voltage": "電壓",
+    "current": "電流",
+    "power": "功率"
   }
 }
