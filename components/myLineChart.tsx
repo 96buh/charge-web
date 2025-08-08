@@ -19,31 +19,60 @@ import {
   ChartLegendContent,
 } from "@/components/ui/chart";
 
-type Props = {
-  series: Point[];
-  yKey: "voltage" | "current" | "power";
-  label: string;
-};
+interface SequenceItem {
+  current: number;
+  voltage: number;
+  power: number;
+  temp_C: number;
+}
 
-export function MyLineChart({ series, yKey, label }: Props) {
-  const now = Date.now();
-  const chartData = series.map((p) => ({
-    sec: (now - p.ts) / 1000, // 0 ~ 30
-    ...p,
+interface MyLineChartProps {
+  /** 從 page 拿到的 sequence 陣列 */
+  sequence: SequenceItem[];
+  /** 要畫哪個欄位，可選 "voltage" | "current" | "power" */
+  field: keyof Pick<SequenceItem, "voltage" | "current" | "power">;
+  /** 圖標題，如果要覆寫預設，可以傳這個 */
+  title?: string;
+  /** 圖說明（subtitle） */
+  description?: string;
+}
+
+const chartConfig = {
+  voltage: { label: "Voltage", color: "darkgreen" },
+  current: { label: "Current", color: "red" },
+  power: { label: "Power", color: "#0A2472" },
+} satisfies ChartConfig;
+
+export function MyLineChart({
+  sequence,
+  field,
+  title,
+  description,
+}: MyLineChartProps) {
+  const chartData = sequence.map((d, i) => ({
+    sec: i,
+    [field]: d[field],
   }));
+
+  const { label, color } = chartConfig[field];
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{label}</CardTitle>
-        <CardDescription>最近30秒變化</CardDescription>
+        <CardTitle>{title ?? label}</CardTitle>
+        <CardDescription>
+          {description ?? `最近 ${sequence.length} 秒 ${label} 變化`}
+        </CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={{}}>
+        {/*<ChartContainer config={chartConfig}> */}
+        <ChartContainer config={{ [field]: { label, color } }}>
           <LineChart
             accessibilityLayer
             data={chartData}
             margin={{
-              left: -22,
+              // left: 12,
+              left: -10,
               right: 12,
             }}
           >
@@ -71,9 +100,11 @@ export function MyLineChart({ series, yKey, label }: Props) {
             />
             {/*<ChartLegend content={<ChartLegendContent />} />*/}
             <Line
-              dataKey={yKey}
+              // dataKey="voltage"
+              dataKey={field}
               type="linear"
-              stroke={`var(--color-${yKey})`}
+              // stroke="var(--color-voltage)"
+              stroke={color}
               strokeWidth={2}
               dot={false}
               isAnimationActive={false}
