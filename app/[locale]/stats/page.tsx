@@ -1,9 +1,16 @@
 import { MyBarChart } from "@/components/myBarChart";
 import { useTranslations } from "next-intl";
 import { Clock7, Thermometer } from "lucide-react";
+import StatCard from "@/components/statCard";
 
 export default function Page() {
   const t = useTranslations();
+
+  const status = "not_charging";
+  const battery = "50%";
+  const chargingTime = "15m";
+  const temperature = "20";
+
   return (
     <div className="grid gap-4 p-4 lg:px-10">
       <MyBarChart />

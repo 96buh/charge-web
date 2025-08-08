@@ -1,12 +1,10 @@
 "use client";
 
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
-import { type Point } from "@/lib/types";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -15,8 +13,6 @@ import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-  ChartLegend,
-  ChartLegendContent,
 } from "@/components/ui/chart";
 
 interface SequenceItem {
@@ -31,13 +27,17 @@ interface MyLineChartProps {
   sequence: SequenceItem[];
   /** 要畫哪個欄位，可選 "voltage" | "current" | "power" */
   field: keyof Pick<SequenceItem, "voltage" | "current" | "power">;
-  /** 圖標題，如果要覆寫預設，可以傳這個 */
+  /** 圖標題，預設為 chartConfig 內的 label */
   title?: string;
   /** 圖說明（subtitle） */
   description?: string;
 }
 
-const chartConfig = {
+// 定義各 field 的標籤與顏色
+const chartConfig: Record<
+  MyLineChartProps["field"],
+  { label: string; color: string }
+> = {
   voltage: { label: "Voltage", color: "darkgreen" },
   current: { label: "Current", color: "red" },
   power: { label: "Power", color: "#0A2472" },
@@ -49,6 +49,7 @@ export function MyLineChart({
   title,
   description,
 }: MyLineChartProps) {
+  // 根據 sequence 順序作為 X 軸秒數
   const chartData = sequence.map((d, i) => ({
     sec: i,
     [field]: d[field],
@@ -65,31 +66,19 @@ export function MyLineChart({
         </CardDescription>
       </CardHeader>
       <CardContent>
-        {/*<ChartContainer config={chartConfig}> */}
         <ChartContainer config={{ [field]: { label, color } }}>
-          <LineChart
-            accessibilityLayer
-            data={chartData}
-            margin={{
-              // left: 12,
-              left: -10,
-              right: 12,
-            }}
-          >
+          <LineChart data={chartData} margin={{ left: -10, right: 12 }}>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="sec"
               type="number"
+              domain={[0, sequence.length > 0 ? sequence.length - 1 : 0]}
               tickLine={false}
-              domain={[0, 30]}
-              ticks={[0, 5, 10, 15, 20, 25, 30]}
               axisLine={false}
               tickMargin={5}
-              // tickFormatter={(s) => `${s}s`}
             />
             <YAxis
-              dataKey={yKey}
-              // domain={["auto", "auto"]}
+              dataKey={field}
               tickLine={false}
               axisLine={false}
               tickMargin={8}
@@ -98,30 +87,18 @@ export function MyLineChart({
               cursor={true}
               content={<ChartTooltipContent hideLabel />}
             />
-            {/*<ChartLegend content={<ChartLegendContent />} />*/}
             <Line
-              // dataKey="voltage"
               dataKey={field}
+              name={label}
               type="linear"
-              // stroke="var(--color-voltage)"
               stroke={color}
               strokeWidth={2}
               dot={false}
               isAnimationActive={false}
-              name={label}
             />
           </LineChart>
         </ChartContainer>
       </CardContent>
-      {/*
-      <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
-        </div>
-        <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
-        </div>
-      </CardFooter>
-      */}
     </Card>
   );
 }
